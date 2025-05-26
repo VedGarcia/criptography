@@ -13,7 +13,7 @@ const { argv } = yargs
             type: {
                 choices: ["bytes", "int", "uuid"] as const,
                 description: '',
-                demandoption: true
+                demandOption: true
             },
             size: {
                 alias: 's',
@@ -36,6 +36,3 @@ const { argv } = yargs
     })
     .demandCommand(1, "You need at least one command before moving on")
     .help();
-
-console.log(argv);
-
