@@ -1,0 +1,21 @@
+{
+  "dependencies": {
+    "ts-node": "^10.9.2",
+    "yargs": "^17.7.2"
+  },
+  "packageManager": "yarn@1.22.22+sha512.a6b2f7906b721bba3d67d4aff083df04dad64c399707841b7acf00f6b133b7ac24255f2652fa22ae3534329dc6180534e98d17432037ff6fd140556e2bb3137e",
+  "name": "criptography",
+  "version": "1.0.0",
+  "description": "App generate random number",
+  "main": "intex.js",
+  "author": "Victor Garcia",
+  "license": "MIT",
+   "scripts": {
+    "cli": "ts-node src/index.ts"
+  },
+  "devDependencies": {
+    "@types/node": "^22.15.21",
+    "@types/yargs": "^17.0.33",
+    "typescript": "^5.8.3"
+  }
+}
