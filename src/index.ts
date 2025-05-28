@@ -1,5 +1,19 @@
 import yargs from "yargs";
 import prng from "./prng";
+import cipher from "./cipher";
+import decipher from "./decipher";
+
+const input = {
+  alias: "i",
+  type: "string",
+  demandOption: true,
+} as const;
+
+const output = {
+  alias: "o",
+  type: "string",
+  demandOption: true,
+} as const;
 
 const { argv } = yargs
     .options({})
@@ -34,5 +48,68 @@ const { argv } = yargs
             }
         }
     })
+    .command({
+    command: "cipher",
+    describe: "Encrypt a file",
+    handler: ({ password, salt, size, input, output }) => {
+      cipher(password, salt, size, input, output);
+    },
+    builder: {
+      password: {
+        alias: "p",
+        description: "The password to encrypt the file with",
+        type: "string",
+      },
+      salt: {
+        description: "The salt to encrypt the file with",
+        type: "string",
+      },
+      size: {
+        choices: [128, 192, 256] as const,
+        description: "The size of the key",
+        default: 128,
+      },
+      input: {
+        ...input,
+        description: "The file to encrypt",
+      },
+      output: {
+        ...output,
+        description: "The file to output the encrypted file to",
+      },
+    },
+  })
+  .command({
+    command: "decipher",
+    describe: "Decrypt a file",
+    handler: ({ password, salt, size, input, output }) => {
+      decipher(password, salt, size, input, output);
+    },
+    builder: {
+      password: {
+        alias: "p",
+        description: "The password to decrypt the file with",
+        type: "string",
+      },
+      salt: {
+        description: "The salt to decrypt the file with",
+        type: "string",
+      },
+      size: {
+        choices: [128, 192, 256] as const,
+        description: "The size of the key",
+        default: 128,
+      },
+      input: {
+        ...input,
+        description: "The file to decrypt",
+      },
+      output: {
+        ...output,
+        description: "The file to output the decrypted file to",
+      },
+    },
+  })
+
     .demandCommand(1, "You need at least one command before moving on")
     .help();
