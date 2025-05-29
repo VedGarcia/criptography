@@ -16,6 +16,6 @@ const cipher = (password: string, salt: string, size: 128 | 192 | 256, input: Pa
             if (err) throw err;
         }
     )
-}
+} 
 
 export default cipher;
